@@ -8,8 +8,8 @@ using std::ostream;
 
 int main() {
     testOrdersLists();
-    Deploy dpl;
-    cout << dpl << endl;
+//    Deploy dpl;
+//    cout << dpl << endl;
     return 0;
 }
 

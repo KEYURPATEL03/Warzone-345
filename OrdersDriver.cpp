@@ -22,16 +22,18 @@ OrdersDriver::~OrdersDriver()
          Airlift* airliftOrder = new Airlift();
          Negotiate* negotiateOrder = new Negotiate();
 
-         OrdersList* ordersListObj;
+         OrdersList ordersListObj;
 
-         ordersListObj->addToListOfOrders(deployOrder);
-         ordersListObj->addToListOfOrders(advanceOrder);
-         ordersListObj->addToListOfOrders(bombOrder);
-         ordersListObj->addToListOfOrders(blockadeOrder);
-         ordersListObj->addToListOfOrders(airliftOrder);
-         ordersListObj->addToListOfOrders(negotiateOrder);
+         ordersListObj.addToListOfOrders(deployOrder);
+         ordersListObj.addToListOfOrders(advanceOrder);
+         ordersListObj.addToListOfOrders(bombOrder);
+         ordersListObj.addToListOfOrders(blockadeOrder);
+         ordersListObj.addToListOfOrders(airliftOrder);
+         ordersListObj.addToListOfOrders(negotiateOrder);
 
          //NOT WORKING
-//         cout << ordersListObj->getListOfOrders() << endl;
+         cout << ordersListObj << endl;
+//         ordersListObj.remove(deployOrder);
+//        cout << ordersListObj << endl;
 
     }

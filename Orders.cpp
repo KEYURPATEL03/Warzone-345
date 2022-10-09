@@ -7,7 +7,7 @@ using std::endl;
 using std::ostream;
 using std::string;
 
-Orders::Orders(/* args */)
+Orders::Orders()
 {
     //Here we are telling what should be done when we create an object of type Orders
       cout << "An Order object has been created." << endl;
@@ -18,8 +18,9 @@ Orders::~Orders()
     cout << "Destructor deleted the Orders object!" << endl;
 }
 
-OrdersList::OrdersList(/* args */)
+OrdersList::OrdersList()
 {
+    cout << "OrdersList has been created!" << endl;
 }
 
 OrdersList::~OrdersList()
@@ -284,7 +285,7 @@ void Negotiate::execute() {
 
 //OrdersList addToListOfOrders() function
 void OrdersList::addToListOfOrders(Orders* ord){
-    listOfOrders.push_back(ord);
+    this->listOfOrders.push_back(ord);
 }
 
 //OrdersList getListOfOrders() function
@@ -300,7 +301,7 @@ void OrdersList::remove(Orders* ord){
 //Stream Insertion Operator Definition
 ostream& operator<<(ostream& os, OrdersList& ordL){
     for(Orders* ord : ordL.getListOfOrders()){
-        os << ord << endl;
+        os << *ord;
     }
     return os;
 }
