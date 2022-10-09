@@ -3,12 +3,12 @@
 #include <string>
 #include <sstream>
 #include "GameEngine.H"
-
+//default constructor
 GameEngine :: GameEngine():command(""),state(0),numOfMaps(0),numOfPlayer(0),partHandler(false){
     
 }
-
-GameEngine::GameEngine(const GameEngine& p)
+//copy constructor
+GameEngine::GameEngine(const GameEngine& p) 
 {
     command = p.command;
     state = p.state;
@@ -17,7 +17,7 @@ GameEngine::GameEngine(const GameEngine& p)
     partHandler = p.partHandler;
 }
 
-GameEngine& GameEngine :: operator=(const GameEngine& p) //##??
+GameEngine& GameEngine :: operator=(const GameEngine& p) 
 {
     command = p.command;
     state = p.state;
@@ -28,7 +28,7 @@ GameEngine& GameEngine :: operator=(const GameEngine& p) //##??
 
 }
 
-void GameEngine :: start(){
+void GameEngine :: start(){  //This is the start state
     state = 0 ;
 
     cout<<"\n\n ## Welcome to the GAME ##\n\n";
@@ -48,8 +48,8 @@ void GameEngine :: start(){
     partHandler=false;
     cout<<"\n";
 }
-
-void GameEngine :: mapLoaded(){
+//map loaded state
+void GameEngine :: mapLoaded(){         
     numOfMaps=numOfMaps+1;
     cout<<"\"Current-State: map loaded\" \nMap has been loaded"<<endl;
     cout<< "Number of maps loaded :" << numOfMaps << " map(s)" <<endl;
@@ -70,14 +70,14 @@ void GameEngine :: mapLoaded(){
     cout<<"\n";
 
 }
-
+//map validated state , in next iterations of the game map will be validated here
 void GameEngine::mapValidated(){
     cout<<"Current-State: map validated.\n";
     cout<<numOfMaps<< " map(s) have been validated" << endl;
     state = 3;
     cout<< "\n" << endl;
 }
-
+//player added state 
 void GameEngine::playersAdded(){
     cout<<"\"Current-State: players added\"\nPlayers needs to be added"<<endl;
     cout<<"Type (addplayer) to add a player" <<endl;
@@ -104,7 +104,7 @@ void GameEngine::playersAdded(){
     }
     cout<< "\n" << endl;
 }
-
+// Play part , assign reinforcement state
 void GameEngine::assignReinforcement(){
     cout << "\"Current-State: assign reinforcement\"\nCountries has been assigned " <<endl;
     cout << "Assign reinforcement has been finished" << endl;
@@ -112,7 +112,7 @@ void GameEngine::assignReinforcement(){
     state = 5;
     cout<< "\n" << endl;
 }
-
+// issue order state
 void GameEngine::issueOrders(){
     cout << "\"Current-State:issue orders\"\norder has been issued" <<endl;
     cout << "Type (issueorder) for re-issue the order" <<endl;
@@ -145,7 +145,7 @@ void GameEngine::issueOrders(){
     }
     cout<< "\n" << endl;
 }
-
+//execute order state
 void GameEngine::executeOrders(){
     cout << "\"Current-State: execute orders\"\norders have been executed!" <<endl;
     cout << "Choose to win the game or not!" <<endl;
@@ -168,7 +168,7 @@ void GameEngine::executeOrders(){
     }
     cout<< "\n" << endl;
 }
-
+//win state
 void GameEngine::win(){
     cout << "\"Current-State: win\"\nYour enemy has beed defeated, You won! \n\t ****** WINNER WINNER ****** \t\n" << endl;
     cout << "Do you want to play again ?" << endl;
@@ -189,7 +189,7 @@ void GameEngine::win(){
     partHandler = false;
     cout<< "\n" << endl;
 }
-
+//start part
 void GameEngine::startup(){
     while(state == 0){
         start();
@@ -204,7 +204,7 @@ void GameEngine::startup(){
         playersAdded();
     }
 }
-
+//play part
 void GameEngine::play(){
         while(state == 4)
         {
@@ -220,7 +220,7 @@ void GameEngine::play(){
         }
     }
 }
-
+// function to check the current state of the game
 void GameEngine::testGameStates(){
     partHandler = false;
     state = 0;
