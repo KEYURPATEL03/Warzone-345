@@ -53,16 +53,16 @@ void GameEngine :: mapLoaded(){
     numOfMaps=numOfMaps+1;
     cout<<"\"Current-State: map loaded\" \nMap has been loaded"<<endl;
     cout<< "Number of maps loaded :" << numOfMaps << " map(s)" <<endl;
-    cout<< "To load other map, Please enter(yes)" << endl;
-    cout<< "To validated map, Please enter(validate)" << endl;
+    cout<< "To load other map, Please type(loadmap)" << endl;
+    cout<< "To validated map, Please enter(validatemap)" << endl;
     cin >> this->command;
-    if (command == "yes"){
+    if (command == "loadmap"){
         state = 1;
     }
-    else if (command == "validate"){
+    else if (command == "validatemap"){
         state = 2; 
     }
-    else if (command != "validate" && command != "yes"){
+    else if (command != "validatemap" && command != "loadmap"){
         state = 1;
         numOfMaps = numOfMaps - 1;
         cout << "WRONG command!" << endl;
@@ -80,17 +80,17 @@ void GameEngine::mapValidated(){
 
 void GameEngine::playersAdded(){
     cout<<"\"Current-State: players added\"\nPlayers needs to be added"<<endl;
-    cout<<"Type (yes) to add a player" <<endl;
-    cout<<"Type (no) to finish adding" <<endl;
+    cout<<"Type (addplayer) to add a player" <<endl;
+    cout<<"Type (assigncountries) to finish adding and assign countries!" <<endl;
     cin >> this->command;
 
-    if (command == "yes"){
+    if (command == "addplayer"){
         numOfPlayer = numOfPlayer + 1;
         cout<<"now a new player has been added, you have "<< numOfPlayer << " player(s) right now" <<endl;
         state = 3;
         partHandler = false;
     }
-    if(command == "no"){
+    if(command == "assigncountries"){
         state = 4;
         partHandler = true;
     }
@@ -98,7 +98,7 @@ void GameEngine::playersAdded(){
         cout<<"you can not play the game without any players!!"<<endl;
         state = 3;
     }
-    if (command != "yes" && command !="no"){
+    if (command != "addplayer" && command !="assigncountries"){
         state = 3;
         cout << "wrong command! " << endl;
     }
@@ -115,31 +115,31 @@ void GameEngine::assignReinforcement(){
 
 void GameEngine::issueOrders(){
     cout << "\"Current-State:issue orders\"\norder has been issued" <<endl;
-    cout << "Type (yes) for re-issue the order" <<endl;
-    cout << "Type (no) for going executed order" <<endl;
+    cout << "Type (issueorder) for re-issue the order" <<endl;
+    cout << "Type (endissueorders) for execute orders" <<endl;
     cin >> this->command;
-    if (command == "yes"){
+    if (command == "issueorder"){
         cout << "comfirmed!" << endl;
         cout << "would you like to issue other order?" << endl;
-        cout << "Type (yes) for issuing another order, Else enter (no) for execution" <<endl;
+        cout << "Type (issueorder) for issuing another order, Else enter (endissueorder) for execution" <<endl;
         cin >> this->command;
-        if (command == "yes"){
+        if (command == "issueorder"){
             state = 5;
         }
-        else if (command == "no"){
+        else if (command == "endissueorder"){
             state = 6;
         }
-        else if (command != "yes" && command !="no"){
+        else if (command != "issueorder" && command !="endissueorder"){
             state = 5;
             cout << "wrong command!" << endl;
         }
     }
-    else if (command == "no"){
+    else if (command == "endissueorder"){
         cout << "comfirmed!" << endl;
         cout << "going to execute orders" << endl;
         state = 6;
     }
-    else if (command != "yes" && command !="no"){
+    else if (command != "issueorder" && command !="endissueorder"){
         state = 5;
         cout << "wrong command!" << endl;
     }
@@ -150,19 +150,19 @@ void GameEngine::executeOrders(){
     cout << "\"Current-State: execute orders\"\norders have been executed!" <<endl;
     cout << "Choose to win the game or not!" <<endl;
     cout << "Type (win) for winning" <<endl;
-    cout << "Type (execute) for re-execute order!" <<endl;
-    cout << "Type (assignreinforce) for re-assign reinforcement!" <<endl;
+    cout << "Type (execoder) for re-execute order!" <<endl;
+    cout << "Type (endexecoders) for re-assign reinforcement!" <<endl;
     cin >> this->command;
     if (command == "win"){
         state = 7;
     }
-    if (command == "execute"){
+    if (command == "execoder"){
         state = 6;
     }
-    if (command == "assignreinforce"){
+    if (command == "endexecoders"){
         state = 4;
     }
-    else if (command != "win" && command !="execute" && command !="assignreinforce"){
+    else if (command != "win" && command !="execoder" && command !="endexecoders"){
         state = 6;
         cout << "wrong command!" << endl;
     }
@@ -172,10 +172,10 @@ void GameEngine::executeOrders(){
 void GameEngine::win(){
     cout << "\"Current-State: win\"\nYour enemy has beed defeated, You won! \n\t ****** WINNER WINNER ****** \t\n" << endl;
     cout << "Do you want to play again ?" << endl;
-    cout << "Type (yes) for play again" << endl;
-    cout <<  "Type any other command besides (yes) to end " << endl;
+    cout << "Type (play) for play again" << endl;
+    cout <<  "Type any other command besides (play) to end " << endl;
     cin >> this->command;
-    if (command == "yes"){
+    if (command == "play"){
         state = 0;
         cout << "Resetting the Game!" << endl;
         numOfMaps = 0;

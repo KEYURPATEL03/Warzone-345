@@ -16,7 +16,7 @@ class GameEngine{
 
     GameEngine& operator = (const GameEngine& p);
 
-    friend std::ostream& operator<<(std::ostream& stream, const GameEngine& p); //### ???
+    friend std::ostream& operator<<(std::ostream& stream, const GameEngine& p); 
 
     std::string command;
 
