@@ -1,10 +1,11 @@
 #include "Cards.h"
+
 //default constructor 
 Card::Card() {
-	type = airlift;
+	type = "airlift";
 }
 //parametized constructor 
-Card::Card(CardType t)
+Card::Card(string t)
 {
 	type = t;
 }
@@ -22,7 +23,7 @@ Card& Card::operator=(Card a){
 	return *this;
 }
 //getter 
-CardType Card::getType(){
+string Card::getType(){
 	return type;
 }
 
@@ -32,6 +33,9 @@ CardType Card::getType(){
 Order Card::play(){
 
 	//Create an object of type order
+	Order order;
+
+	// Create an order depending on the card (dummy order)
 
 
 	return order; // return the order to be added to the player orderlist
@@ -48,7 +52,7 @@ void Deck::generateDeck(int n)
 	for (int i = 0; i < n; i++)
 	{
 		int randNum = rand() % 5;
-		Card c(static_cast<CardType>(randNum));
+		Card c(cardTypes[randNum]);
 		addCard(c);
 	}
 }
@@ -72,6 +76,15 @@ bool Deck::isEmpty()
 	return false;
 }
 
+void Deck::printDeck()
+{
+	cout << "Deck --> ";
+	for(int i = 0; i < deck.size(); i++) {
+		cout << deck.at(i).getType() << " ";
+	}
+	cout << endl;
+}
+
 void Hand::addCard(Card c)
 {
 	hand.push_back(c);
@@ -89,4 +102,13 @@ Card Hand::useCard()
 	Card c = hand.front();
 	hand.erase(hand.begin());
 	return c;
+}
+
+void Hand::printHand()
+{
+	cout << "Hand --> ";
+	for(int i = 0; i < hand.size(); i++) {
+		cout << hand.at(i).getType() << " ";
+	}
+	cout << endl;
 }

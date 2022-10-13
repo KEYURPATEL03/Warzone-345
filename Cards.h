@@ -1,25 +1,21 @@
 #include <iostream>
 #include <vector>
+#include "Orders.h"
 using namespace std;
 
-enum CardType {
-	bomb,
-	reinforcement,
-	blockade,
-	airlift,
-	diplomacy
-};
+
+const string cardTypes[5] = {"bomb", "reinforcement", "blockade", "airlift", "diplomacy"};
 
 class Card {
 private:
-	CardType type;
+	string type;
 public:
 	Card();
-	Card(CardType);
+	Card(string);
 	bool operator ==(Card);
 	bool operator !=(Card);
 	Card& operator =(Card);
-	CardType getType();
+	string getType();
 	Order play(); // returns an order
 };
 
@@ -29,6 +25,7 @@ public:
 	void addCard(Card);
 	bool isEmpty();
 	Card useCard();
+	void printHand();
 };
 
 class Deck {
@@ -38,4 +35,5 @@ public:
 	void generateDeck(int);
 	Card draw();
 	bool isEmpty();
+	void printDeck();
 };
